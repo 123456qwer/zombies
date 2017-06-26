@@ -1,0 +1,65 @@
+//
+//  JYZombiesPch.pch
+//  Zombies
+//
+//  Created by 吴冬 on 17/4/11.
+//  Copyright © 2017年 北京金源互动科技有限公司. All rights reserved.
+//
+
+#ifndef JYZombiesPch_pch
+#define JYZombiesPch_pch
+
+#import <UIKit/UIKit.h>
+#import "CutPictureTool.h"
+#import "UIViewExt.h"
+#import "CalculateDistance.h"
+#import "FireBaseNode.h"
+#import "SkillAnimationTime.h"
+
+#define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+
+
+#define kLeft @"kLeft"
+#define kRight @"kRight"
+#define kUp @"kUp"
+#define kDown @"kDown"
+
+#define kLU @"kLU"  //左上....
+#define kLD @"kLD"
+#define kRU @"kRU"
+#define kRD @"kRD"
+
+static const uint32_t player_type = 0x03;
+static const uint32_t wall_type   = 0x01;
+static const uint32_t fire_type   = 0x04;
+static const uint32_t normal_zom  = 0x06;
+static const uint32_t connonFire_type = 0x02;
+static const uint32_t connon_type = 0x08;
+
+#pragma mark - zombies
+
+typedef enum : NSUInteger {
+   level1 = 1,
+   level2 = 2,
+   level3 = 3,
+} zomLevel;
+
+#import "BaseZombiesNode.h"
+#import "NormalZombies.h"
+
+#define x_Scale  kScreenWidth / 667.0
+#define y_Scale  kScreenHeight / 375.0
+
+#define kBlood @"kBlood"   //血量
+#define kAttack @"kAttack" //攻击力
+#define kSpeed @"kSpeed"   //移动速度
+#define kStiff @"kStiff"   //硬直属性
+
+#define kNode @"kNode"  
+#define kPerNode @"perNode"
+
+
+
+
+#endif /* JYZombiesPch_pch */
