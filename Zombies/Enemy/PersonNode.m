@@ -33,6 +33,13 @@
         self.speeds = 3;
         self.attack_distance = 170;
         self.attack = 1;
+        self.direction = kLeft;
+        self.blood = 10;
+        self.fire_impact = 3;
+        
+        
+        self.beatOff = 5;
+        self.passiveSpeeds = 25;
         
         
         self.nodeBehavior = [PersonBehavior new];
@@ -44,8 +51,7 @@
         _isStopMove = YES;
         _fireDic = [CutPictureTool cutFirePic:[UIImage imageNamed:@"fireAc"] size:CGSizeMake(45, 45)];
         
-        self.direction = kLeft;
-        self.blood = 10;
+    
         
         
         SKPhysicsBody *body = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(20, 20)];
@@ -104,6 +110,10 @@
 
 - (BOOL)beAttackWithZomDirection:(NSString *)direction
 {
+    //可能攻击过程中僵尸被击中,造成 direction = nil
+    if (!direction) {
+        direction = kLeft;
+    }
     NSDictionary *dic = @{kNode:self,@"direction":direction,@"blood":@(1)};
     return  [self.nodeBehavior beAttack:dic];
 }

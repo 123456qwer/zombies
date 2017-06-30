@@ -183,8 +183,7 @@ static void *zomLink = @"zomLink";
         if (zom.blood <= 0) {
             
             [zom removeObserver:self forKeyPath:@"blood"];
-            NSMutableArray *diedArr;
-            [zom died:diedArr];
+            [zom died:_personNode];
             
             _killZomNumber++;
             
@@ -356,8 +355,9 @@ static void *zomLink = @"zomLink";
         }
     }
     
+    //子弹击中僵尸
     if (fireNode && zomNode && !zomNode.isAttack) {
-        zomNode.blood -= _personNode.attack;
+        [zomNode.nodeBehavior beAttack:@{kNode:zomNode,kPerNode:_personNode}];
         [fireNode removeFromParent];
     }
     

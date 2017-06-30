@@ -39,8 +39,6 @@
     
 
     
-    
-    
     int index = fabs(node.blood - 10);
     node.bloodNode.texture = node.bloodArr[index];
     [node changeFireDirection];
@@ -60,7 +58,7 @@
    
     //人物移动
     node.position = [CalculateDistance movePointWithSpeed:node.speeds direction:key point:node];
-    NSLog(@"x:%lf  y:%lf",node.position.x,node.position.y);
+    //NSLog(@"x:%lf  y:%lf",node.position.x,node.position.y);
 
     
     node.texture = [_moveDic objectForKey:key][0];

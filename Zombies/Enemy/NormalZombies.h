@@ -25,4 +25,10 @@
 
 //僵尸移动
 - (void)zomMoveWithPerson:(PersonNode *)person;
+
+//僵尸被攻击
+- (void)beAttackWithPerson:(PersonNode *)person;
+
+
+
 @end

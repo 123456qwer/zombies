@@ -10,6 +10,38 @@
 
 @implementation ZombiesBehavior
 
+- (BOOL)beAttack:(NSDictionary *)dic
+{
+    JYSkillList *skill = [JYSkillList shareList];
+
+    
+    NormalZombies *zomNode = dic[kNode];
+    PersonNode    *perNode = dic[kPerNode];
+    
+    arc4random() % 100 < perNode.beatOff ? [skill passiveBeatOffZom:100] : (0);
+    
+    
+    [zomNode removeAllActions];
+    
+    zomNode.blood -= perNode.attack;
+    
+    
+    zomNode.direction = [CalculateDistance oppositeDirection:perNode.direction];
+    CGPoint point = [CalculateDistance movePointWithSpeed:-perNode.fire_impact direction:zomNode.direction point:zomNode];
+    SKAction *moveAction = [SKAction moveTo:point duration:0.2];
+    
+    zomNode.texture = [_moveDic objectForKey:zomNode.direction][0];
+    zomNode.zPosition = 3 * kScreenHeight - point.y * y_Scale;
+    
+    perNode.fire_impact = 3.0;
+    
+    [zomNode runAction:moveAction completion:^{
+        zomNode.direction = nil;
+    }];
+    
+    return NO;
+}
+
 - (void)attack:(NSDictionary *)dic
 {
     void (^block)() = dic[@"block"];
@@ -43,6 +75,13 @@
 
 - (void)died:(NSDictionary *)dic
 {
+    PersonNode *personNode = [dic objectForKey:kPerNode];
+
+    JYSkillList *skill = [JYSkillList shareList];
+    arc4random() % 100 < personNode.passiveSpeeds ? [skill passiveChangeSpeed:1] : (0);
+    
+    
+    
     BaseNode *node = [dic objectForKey:kNode];
     
     [node removeAllActions];

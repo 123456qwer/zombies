@@ -27,17 +27,20 @@ static JYSkillList *skillList = nil;
     switch (type) {
         case Speed:
         {
-            dic = @{kSkillCD:@(5),kKillZomNumber:@(5)};
+            UIImage *image = [UIImage imageNamed:@"addSpeed.jpg"];
+            dic = @{kSkillCD:@(5),kKillZomNumber:@(5),kSkillImage:image};
         }
             break;
             case Attack:
         {
-            dic = @{kSkillCD:@(10),kKillZomNumber:@(10)};
+            UIImage *image = [UIImage imageNamed:@"addAttack.jpg"];
+            dic = @{kSkillCD:@(5),kKillZomNumber:@(10),kSkillImage:image};
         }
             break;
          case Attack_distance:
         {
-            dic = @{kSkillCD:@(7),kKillZomNumber:@(7)};
+            UIImage *image = [UIImage imageNamed:@"addDistance.jpg"];
+            dic = @{kSkillCD:@(5),kKillZomNumber:@(7),kSkillImage:image};
         }
             break;
             
@@ -55,7 +58,7 @@ static JYSkillList *skillList = nil;
     switch (type) {
         case Speed:
         {
-            [self changeSpeed:5];
+            [self changeSpeed:_personNode.speeds + 2];
         }
             break;
             case Attack:
@@ -81,7 +84,7 @@ static JYSkillList *skillList = nil;
     switch (type) {
         case Speed:
         {
-            [self changeSpeed:3];
+            [self changeSpeed:_personNode.speeds - 2];
         }
             break;
         case Attack:
@@ -103,7 +106,7 @@ static JYSkillList *skillList = nil;
 
 
 
-
+#pragma mark -主动技能
 
 - (void)changeSpeed:(int)speed
 {
@@ -119,6 +122,42 @@ static JYSkillList *skillList = nil;
 {
     _personNode.attack_distance = distance;
 }
+
+#pragma mark -被动技能
+- (void)passiveChangeSpeed:(int)speed
+{
+    if (!_passiveChangeSpeed) {
+        _personNode.speeds += speed;
+        //10秒CD
+        [self performSelector:@selector(returnSpeed:) withObject:@(speed) afterDelay:10];
+        _passiveChangeSpeed = NO;
+    }
+    
+}
+
+- (void)returnSpeed:(id)speed
+{
+    
+    int speeds = [speed floatValue];
+    NSLog(@"%d",speeds);
+    
+//    NSLog(@"%@",[NSThread currentThread]);
+//    NSLog(@"%@",_personNode);
+    
+    _personNode.speeds -= speeds;
+}
+
+//25%概率击晕僵尸
+- (void)passiveDizzyZom
+{
+}
+
+- (void)passiveBeatOffZom:(int)impact
+{
+    _personNode.fire_impact = impact;
+}
+
+
 
 
 @end

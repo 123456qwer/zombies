@@ -11,7 +11,6 @@
 #define bigBtn 150 / 750.0 * kScreenWidth
 #define smallBtn 60 / 750.0 * kScreenWidth
 #define page1 20 / 750.0 * kScreenWidth
-#define speed 45 / 750.0 * kScreenWidth
 
 #import "Weapon.h"
 
@@ -116,22 +115,6 @@
         
         
         
-        CGFloat hei = (smallBtn - speed) / 2.0;
-        UIImageView *speedImage = [[UIImageView alloc] initWithFrame:CGRectMake(hei, hei, speed, speed)];
-        speedImage.image = [UIImage imageNamed:@"addSpeed.jpg"];
-        [_weaponBtn1 addSubview:speedImage];
-        
-       
-        UIImageView *attackImage = [[UIImageView alloc] initWithFrame:CGRectMake(hei, hei, speed, speed)];
-        attackImage.image = [UIImage imageNamed:@"addAttack.jpg"];
-        [_weaponBtn2 addSubview:attackImage];
-        
-        
-        UIImageView *distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(hei, hei, speed, speed)];
-        distanceImage.image = [UIImage imageNamed:@"addDistance.jpg"];
-        [_weaponBtn3 addSubview:distanceImage];
-        
-        
         _weaponBtn1.userInteractionEnabled = NO;
         _weaponBtn2.userInteractionEnabled = NO;
         _weaponBtn3.userInteractionEnabled = NO;
@@ -172,29 +155,9 @@
     
 }
 
-//设置需要积累多少僵尸可以触发技能
-- (void)setWeapon1ZomNumber:(int)number
-{
-    [_weaponBtn1 setZomsNumber:number];
-}
-//设置技能CD
-- (void)setWeapon1CDTimes:(int)times
-{
-    [_weaponBtn1 setTimes:10];
-}
-
-
 - (void)weapon1AnimationEnd
 {
     _fireBtn.userInteractionEnabled = YES;
-}
-
-
-//僵尸死亡个数
-- (void)diedZomNumber:(int)number
-{
-    [_weaponBtn1 diedZomNumber:number];
-    
 }
 
 

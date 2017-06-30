@@ -52,11 +52,21 @@
     
     [self setSkillTimes:[dic[kSkillCD]intValue]];
     [self setKillZomNumber:[dic[kKillZomNumber]intValue]];
+    [self setSkillImage:dic[kSkillImage]];
+    
 }
+
 
 - (void)diedZomNumber:(int)count
 {
     [_sender diedZomNumber:count];
+}
+
+
+
+- (void)setSkillImage:(UIImage *)image
+{
+    [_sender setImage:image];
 }
 
 - (void)setSkillTimes:(int)times

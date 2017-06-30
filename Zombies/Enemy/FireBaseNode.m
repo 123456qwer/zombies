@@ -34,7 +34,7 @@
     body.allowsRotation = NO;
   
     body.dynamic = NO;
-    body.categoryBitMask = fire_type;
+    body.categoryBitMask = 0;
     body.contactTestBitMask = normal_zom;
     body.collisionBitMask = fire_type ;
     

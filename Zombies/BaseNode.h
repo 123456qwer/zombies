@@ -13,22 +13,35 @@
 #import "PersonBehavior.h"
 
 @interface BaseNode : SKSpriteNode
-@property (nonatomic ,assign)int blood;
-@property (nonatomic ,assign)int attack;
-@property (nonatomic ,assign)int speeds;
-@property (nonatomic ,assign)int stiff;
-@property (nonatomic ,assign)int attack_distance;
 
-@property (nonatomic ,assign)BOOL isRedZom;
-@property (nonatomic ,assign)BOOL isAttack;
-
+//人物属性
+@property (nonatomic ,assign)int blood;   //血量
+@property (nonatomic ,assign)int attack;  //攻击力
+@property (nonatomic ,assign)int speeds;  //移速
+@property (nonatomic ,assign)int attack_distance; //攻击距离
+@property (nonatomic ,assign)int fire_impact;  //子弹冲击力
 @property (nonatomic ,assign)BOOL isFire;
 
-@property (nonatomic ,strong)NodeBehavior *nodeBehavior;
 
+//被动天赋
+@property (nonatomic ,assign)int beatOff;  //击退
+@property (nonatomic ,assign)int dizzy;    //击晕
+@property (nonatomic ,assign)int passiveSpeeds; //杀死僵尸加速
+
+
+
+//僵尸属性
+@property (nonatomic ,assign)BOOL isRedZom;  //红头僵尸
+@property (nonatomic ,assign)BOOL isAttack;  //是否正在攻击
+@property (nonatomic ,assign)int stiff;   //硬直
+
+
+//人类、僵尸行为
+@property (nonatomic ,strong)NodeBehavior *nodeBehavior;
+//移动方向(朝向)
 @property (nonatomic ,copy)NSString *direction;
 
 
-- (void)died:(NSMutableArray *)dieArr;
+- (void)died:(id)personNode;
 
 @end

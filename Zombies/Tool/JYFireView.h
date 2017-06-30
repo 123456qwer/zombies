@@ -16,14 +16,7 @@
 
 
 
-- (void)setWeapon1ZomNumber:(int)number;
-- (void)setWeapon1CDTimes:(int)times;
 
-
-- (void)diedZomNumber:(int)number;
-
-
-- (void)weapon1AnimationEnd;
 
 - (void)setFireType:(int)fireType;
 

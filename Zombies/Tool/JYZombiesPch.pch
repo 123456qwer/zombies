@@ -64,6 +64,7 @@ typedef NS_ENUM(NSInteger,PersonSkillType){
 
 #define kSkillCD @"kSkillCD"
 #define kKillZomNumber @"kKillZomNumber"
+#define kSkillImage @"kSkillImage"
 
 #define kBlood @"kBlood"   //血量
 #define kAttack @"kAttack" //攻击力

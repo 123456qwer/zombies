@@ -115,14 +115,20 @@
 }
 
 
-- (void)died:(NSMutableArray *)dieArr{
-    [self.nodeBehavior died:@{kNode:self}];
+- (void)died:(id )personNode{
+    PersonNode *person = personNode;
+    [self.nodeBehavior died:@{kNode:self,kPerNode:person}];
 }
 
 - (void)zomMoveWithPerson:(PersonNode *)person
 
 {
     [self.nodeBehavior move:@{kPerNode:person,kNode:self}];
+}
+
+- (void)beAttackWithPerson:(PersonNode *)person
+{
+    [self.nodeBehavior beAttack:@{kPerNode:person,kNode:self}];
 }
 
 @end

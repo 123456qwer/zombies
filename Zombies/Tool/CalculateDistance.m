@@ -189,7 +189,7 @@
 
 + (CGPoint )movePointWithSpeed:(CGFloat)speed
                      direction:(NSString *)direction
-                         point:(PersonNode *)personNode
+                         point:(BaseNode *)personNode
 
 {
     

@@ -7,6 +7,13 @@
 //
 
 #import "FireBtn.h"
+#import <objc/runtime.h>
+
+
+#define smallBtn 60 / 750.0 * kScreenWidth
+#define speed 45 / 750.0 * kScreenWidth
+
+
 
 @implementation FireBtn
 
@@ -17,6 +24,11 @@
     int       _cdTime;
     int       _zomNumber;
     BOOL      _timeChange;
+    int       _zomDiedNumber;
+   
+    NSTimer  *_timer;
+    UILabel  *_timeLabel;
+    
 }
 
 - (void)gameOver
@@ -26,7 +38,17 @@
     
     _timeChange = NO;
     _changeTimes = _cdTime;
+    _zomDiedNumber = 0;
+    
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
+    
+    [_timeLabel removeFromSuperview];
+
 }
+
 
 - (void)weaponTimes:(NSTimer *)timer
 {
@@ -34,26 +56,17 @@
     
     //避免gameOver还在走timer
     if (!_timeChange) {
-        [timer invalidate];
-        timer = nil;
-        [label removeFromSuperview];
-        _changeTimes = _cdTime;
+        
+        [self gameOver];
         return;
     }
     
     _changeTimes --;
     if (_changeTimes < 0) {
         
-        [timer invalidate];
-        timer = nil;
-        [label removeFromSuperview];
-        
-        _changeTimes = _cdTime;
-
         JYInvker *invker = [JYInvker shareInvker];
         [invker rollBackExecute:_index];
         
-        _timeChange = NO;
         return;
     }
     
@@ -71,15 +84,34 @@
         textColor = [UIColor yellowColor];
     }
     
-    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
-    timeLabel.textColor = textColor;
-    timeLabel.font = [UIFont boldSystemFontOfSize:25];
-    timeLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:timeLabel];
-   
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(weaponTimes:) userInfo:timeLabel repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+    _timeLabel.textColor = textColor;
+    _timeLabel.font = [UIFont boldSystemFontOfSize:25];
+    _timeLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_timeLabel];
+    _timeLabel.text = [NSString stringWithFormat:@"%d",_changeTimes];
 
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(weaponTimes:) userInfo:_timeLabel repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    
+}
+
+- (UIImageView *)skillImage
+{
+    if (!_skillImage) {
+        
+        CGFloat page = (smallBtn - speed) / 2.0;
+
+        _skillImage = [[UIImageView alloc] initWithFrame:CGRectMake(page, page, speed, speed)];
+        [self addSubview:_skillImage];
+    }
+    
+    return _skillImage;
+}
+
+- (void)setImage:(UIImage *)image
+{
+    self.skillImage.image = image;
 }
 
 - (void)setTimes:(int)time
@@ -88,13 +120,10 @@
     _cdTime      = time;
 }
 
-
 - (void)setZomsNumber:(int)number
 {
     _zomNumber = number;
 }
-
-
 
 - (void)diedZomNumber:(int)diedZomNumber
 {
@@ -103,22 +132,18 @@
         return;
     }
     
-    
-    
-    int number = diedZomNumber % _zomNumber;
-    
-    NSLog(@"%d",number);
-   
-    
-    if (number == 0) {
+    _zomDiedNumber++;
+    if (_zomDiedNumber == _zomNumber) {
             self.userInteractionEnabled = YES;
             self.alpha = 0.5;
         _timeChange = YES;
+        _zomDiedNumber = 0;
+        
     }else{
-            self.userInteractionEnabled = NO;
+        
+        self.userInteractionEnabled = NO;
         _timeChange = NO;
     }
-    
 }
 
 
@@ -129,8 +154,6 @@
     if (_endBlock) {
         _endBlock(self);
     }
-    
-
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

@@ -24,7 +24,7 @@
 //技能触发所需条件、CD
 - (NSDictionary *)skillTimesAndKillZomNumber:(PersonSkillType)type;
 
-
+//主动技能
 //改变人物移动速度
 - (void)changeSpeed:(int)speed;
 
@@ -33,5 +33,17 @@
 
 //改变攻击距离
 - (void)changeFireDistance:(int)distance;
+
+
+//被动技能
+//10概率增加移速 1
+- (void)passiveChangeSpeed:(int)speed;
+@property (nonatomic ,assign)BOOL passiveChangeSpeed;
+
+//10%概率击晕僵尸
+- (void)passiveDizzyZom;
+
+//10%概率击退僵尸
+- (void)passiveBeatOffZom:(int)impact;
 
 @end

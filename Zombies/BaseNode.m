@@ -10,5 +10,5 @@
 
 @implementation BaseNode
 
-- (void)died:(NSMutableArray *)dieArr{}
+- (void)died:(id )dieArr{}
 @end

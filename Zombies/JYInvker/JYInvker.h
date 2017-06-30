@@ -18,7 +18,6 @@
 - (void)setKillZomNumber:(int)count;
 - (void)setSkillType:(PersonSkillType)type;
 
-
 @end
 
 @interface JYInvker : NSObject
