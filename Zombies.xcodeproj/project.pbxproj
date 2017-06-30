@@ -66,6 +66,13 @@
 		43F2AF481E9B7D69007D9C01 /* Map_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F2AF471E9B7D69007D9C01 /* Map_1.png */; };
 		43F2AF4B1E9B7D84007D9C01 /* Map_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F2AF4A1E9B7D84007D9C01 /* Map_1.m */; };
 		43F2AF4D1E9B7EE0007D9C01 /* Map_1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 43F2AF4C1E9B7EE0007D9C01 /* Map_1.sks */; };
+		43F6CBCF1F05F154009188AF /* JYInvker.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F6CBCE1F05F154009188AF /* JYInvker.m */; };
+		43F6CBD21F05F3AA009188AF /* JYWeaponCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F6CBD11F05F3AA009188AF /* JYWeaponCommand.m */; };
+		43F6CBD51F05F410009188AF /* Weapon.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F6CBD41F05F410009188AF /* Weapon.m */; };
+		43F6CBD81F05F9B8009188AF /* JYSkillList.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F6CBD71F05F9B8009188AF /* JYSkillList.m */; };
+		43F6CBDA1F063266009188AF /* addSpeed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43F6CBD91F063266009188AF /* addSpeed.jpg */; };
+		43F6CBDE1F0635CE009188AF /* addAttack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43F6CBDD1F0635CE009188AF /* addAttack.jpg */; };
+		43F6CBE01F064375009188AF /* addDistance.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43F6CBDF1F064375009188AF /* addDistance.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +160,17 @@
 		43F2AF491E9B7D84007D9C01 /* Map_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map_1.h; sourceTree = "<group>"; };
 		43F2AF4A1E9B7D84007D9C01 /* Map_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map_1.m; sourceTree = "<group>"; };
 		43F2AF4C1E9B7EE0007D9C01 /* Map_1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Map_1.sks; sourceTree = "<group>"; };
+		43F6CBCD1F05F154009188AF /* JYInvker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYInvker.h; sourceTree = "<group>"; };
+		43F6CBCE1F05F154009188AF /* JYInvker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYInvker.m; sourceTree = "<group>"; };
+		43F6CBD01F05F3AA009188AF /* JYWeaponCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYWeaponCommand.h; sourceTree = "<group>"; };
+		43F6CBD11F05F3AA009188AF /* JYWeaponCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYWeaponCommand.m; sourceTree = "<group>"; };
+		43F6CBD31F05F410009188AF /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
+		43F6CBD41F05F410009188AF /* Weapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weapon.m; sourceTree = "<group>"; };
+		43F6CBD61F05F9B8009188AF /* JYSkillList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSkillList.h; sourceTree = "<group>"; };
+		43F6CBD71F05F9B8009188AF /* JYSkillList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSkillList.m; sourceTree = "<group>"; };
+		43F6CBD91F063266009188AF /* addSpeed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addSpeed.jpg; sourceTree = "<group>"; };
+		43F6CBDD1F0635CE009188AF /* addAttack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addAttack.jpg; sourceTree = "<group>"; };
+		43F6CBDF1F064375009188AF /* addDistance.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addDistance.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +272,7 @@
 		43F2AEE11E9B5F25007D9C01 /* Zombies */ = {
 			isa = PBXGroup;
 			children = (
+				43F6CBCC1F05F135009188AF /* JYInvker */,
 				43DE99451EA84EDD00DFA9ED /* Behavior */,
 				438B660B1EA0CD28007F840B /* BaseNode.h */,
 				438B660C1EA0CD28007F840B /* BaseNode.m */,
@@ -308,6 +327,9 @@
 				433E61E71EA4A09700FD3606 /* fire.png */,
 				432DC8C61EA5F936001FBC71 /* gameOver.png */,
 				432DC8C41EA5ED8F001FBC71 /* weaponBtn.png */,
+				43F6CBD91F063266009188AF /* addSpeed.jpg */,
+				43F6CBDD1F0635CE009188AF /* addAttack.jpg */,
+				43F6CBDF1F064375009188AF /* addDistance.jpg */,
 				43F2AF471E9B7D69007D9C01 /* Map_1.png */,
 				43F2AF381E9B7863007D9C01 /* Person4 */,
 				43F2AF2A1E9B65DC007D9C01 /* person_1.png */,
@@ -334,6 +356,21 @@
 				43F2AF4C1E9B7EE0007D9C01 /* Map_1.sks */,
 			);
 			path = LevelMap;
+			sourceTree = "<group>";
+		};
+		43F6CBCC1F05F135009188AF /* JYInvker */ = {
+			isa = PBXGroup;
+			children = (
+				43F6CBCD1F05F154009188AF /* JYInvker.h */,
+				43F6CBCE1F05F154009188AF /* JYInvker.m */,
+				43F6CBD01F05F3AA009188AF /* JYWeaponCommand.h */,
+				43F6CBD11F05F3AA009188AF /* JYWeaponCommand.m */,
+				43F6CBD31F05F410009188AF /* Weapon.h */,
+				43F6CBD41F05F410009188AF /* Weapon.m */,
+				43F6CBD61F05F9B8009188AF /* JYSkillList.h */,
+				43F6CBD71F05F9B8009188AF /* JYSkillList.m */,
+			);
+			path = JYInvker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,12 +454,15 @@
 				43F2AF3E1E9B786E007D9C01 /* person_4.png in Resources */,
 				43B2142E1EFB6103009C92C4 /* connon.png in Resources */,
 				433B7C341EA9E309003798FE /* blink_r.png in Resources */,
+				43F6CBDA1F063266009188AF /* addSpeed.jpg in Resources */,
 				432DC8C51EA5ED8F001FBC71 /* weaponBtn.png in Resources */,
 				43F2AF301E9B65DC007D9C01 /* person_2.png in Resources */,
 				433E61E61EA49B3200FD3606 /* NormalBorn.png in Resources */,
 				43B673511EFA09270097D5A9 /* 长栏杆.png in Resources */,
 				436F59691EAEEC4F00054C06 /* RedNarmalZom.png in Resources */,
 				43EC4D051E9F682F00129D3E /* NormalZom.png in Resources */,
+				43F6CBDE1F0635CE009188AF /* addAttack.jpg in Resources */,
+				43F6CBE01F064375009188AF /* addDistance.jpg in Resources */,
 				436F596B1EAEF20300054C06 /* RedNormalDied.png in Resources */,
 				43F2AEF61E9B5F25007D9C01 /* Assets.xcassets in Resources */,
 				43F2AEF91E9B5F25007D9C01 /* LaunchScreen.storyboard in Resources */,
@@ -448,12 +488,15 @@
 				438B66101EA0D6DD007F840B /* PersonNode.m in Sources */,
 				43F2AF171E9B62BD007D9C01 /* JYLoginVC.m in Sources */,
 				43F2AF371E9B6F04007D9C01 /* JYBaseScene.m in Sources */,
+				43F6CBD81F05F9B8009188AF /* JYSkillList.m in Sources */,
 				431A5ECE1E9CD1DE009D4A5D /* JYOperationView.m in Sources */,
 				433E61EB1EA4A0D800FD3606 /* JYFireView.m in Sources */,
+				43F6CBD51F05F410009188AF /* Weapon.m in Sources */,
 				438B660D1EA0CD28007F840B /* BaseNode.m in Sources */,
 				431A5ED11E9CD7D9009D4A5D /* UIViewExt.m in Sources */,
 				43F2AEE71E9B5F25007D9C01 /* AppDelegate.m in Sources */,
 				433544761E9F2EE100E875DD /* CalculateDistance.m in Sources */,
+				43F6CBD21F05F3AA009188AF /* JYWeaponCommand.m in Sources */,
 				4327CEEF1E9F1D1500DF4C6B /* BaseZombiesNode.m in Sources */,
 				43DE99561EA854CA00DFA9ED /* NodeBehavior.m in Sources */,
 				43DE995C1EA8591000DFA9ED /* PersonBehavior.m in Sources */,
@@ -464,6 +507,7 @@
 				43F2AEE41E9B5F25007D9C01 /* main.m in Sources */,
 				43B214351EFB9CF7009C92C4 /* ConnonZombies.m in Sources */,
 				43F2AF1E1E9B6433007D9C01 /* JYLoginScene.m in Sources */,
+				43F6CBCF1F05F154009188AF /* JYInvker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

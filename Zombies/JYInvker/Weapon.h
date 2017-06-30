@@ -8,9 +8,9 @@
 
 #import "JYWeaponCommand.h"
 
-@interface Weapon1 : JYWeaponCommand
+@interface Weapon : JYWeaponCommand
 
-
-
+//僵尸死亡数目与地图同步
+- (void)diedZomNumber:(int)count;
 
 @end

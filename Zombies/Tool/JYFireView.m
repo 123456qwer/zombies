@@ -11,6 +11,9 @@
 #define bigBtn 150 / 750.0 * kScreenWidth
 #define smallBtn 60 / 750.0 * kScreenWidth
 #define page1 20 / 750.0 * kScreenWidth
+#define speed 45 / 750.0 * kScreenWidth
+
+#import "Weapon.h"
 
 @implementation JYFireView
 {
@@ -20,14 +23,16 @@
     FireBtn *_weaponBtn2;
     FireBtn *_weaponBtn3;
     int      _fireType;
+    JYInvker *_invker;
     
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    
-    
+   
     if (self = [super initWithFrame:frame]) {
+        
+        _invker = [JYInvker shareInvker];
         
         //当次属性为0，可以攻击，证明不在释放技能的状态
         _fireType = 0;
@@ -54,23 +59,25 @@
         _weaponBtn1.frame = CGRectMake(0, 0,smallBtn, smallBtn);
         _weaponBtn1.center = CGPointMake(_fireBtn.center.x - bigBtn / 2.0  - smallBtn / 2.0, _fireBtn.center.y + page1);
         [_weaponBtn1 setImage:[UIImage imageNamed:@"weaponBtn"] forState:UIControlStateNormal];
-        _weaponBtn1.alpha = 0.5;
         [self addSubview:_weaponBtn1];
         
         
         //设置武器类型
         _weaponBtn1.skillType = 1;
         [_weaponBtn1 setSelectBlock:^(UIButton *fir) {
-            [weekSelf weapon1];
+       
         }];
         
+        
         [_weaponBtn1 setEndBlock:^(UIButton *fir) {
-    
+            [weekSelf weaponWithIndex:0];
         }];
+        
         
         [_weaponBtn1 setEndSkillBlock:^{
 
         }];
+        
         
         CGFloat dis      = smallBtn / 2.0 + bigBtn / 2.0;
         CGFloat distance = sqrt(dis * dis / 2.0);
@@ -81,16 +88,14 @@
         _weaponBtn2.frame = CGRectMake(0, 0,smallBtn, smallBtn);
         _weaponBtn2.center = CGPointMake(x,y);
         [_weaponBtn2 setImage:[UIImage imageNamed:@"weaponBtn"] forState:UIControlStateNormal];
-        _weaponBtn2.alpha = 0.5;
         [self addSubview:_weaponBtn2];
         
         
         [_weaponBtn2 setSelectBlock:^(UIButton *fir) {
-            NSLog(@"first2");
         }];
         
         [_weaponBtn2 setEndBlock:^(UIButton *fir) {
-            NSLog(@"first2");
+            [weekSelf weaponWithIndex:1];
         }];
         
         
@@ -99,17 +104,61 @@
         _weaponBtn3.frame = CGRectMake(0, 0,smallBtn, smallBtn);
         _weaponBtn3.center = CGPointMake(_fireBtn.center.x + page1,_fireBtn.center.y - bigBtn / 2.0 - smallBtn / 2.0);
         [_weaponBtn3 setImage:[UIImage imageNamed:@"weaponBtn"] forState:UIControlStateNormal];
-        _weaponBtn3.alpha = 0.5;
         [self addSubview:_weaponBtn3];
         
         
         [_weaponBtn3 setSelectBlock:^(UIButton *fir) {
-            NSLog(@"first3");
         }];
         
         [_weaponBtn3 setEndBlock:^(UIButton *fir) {
-            NSLog(@"first3");            
+            [weekSelf weaponWithIndex:2];
         }];
+        
+        
+        
+        CGFloat hei = (smallBtn - speed) / 2.0;
+        UIImageView *speedImage = [[UIImageView alloc] initWithFrame:CGRectMake(hei, hei, speed, speed)];
+        speedImage.image = [UIImage imageNamed:@"addSpeed.jpg"];
+        [_weaponBtn1 addSubview:speedImage];
+        
+       
+        UIImageView *attackImage = [[UIImageView alloc] initWithFrame:CGRectMake(hei, hei, speed, speed)];
+        attackImage.image = [UIImage imageNamed:@"addAttack.jpg"];
+        [_weaponBtn2 addSubview:attackImage];
+        
+        
+        UIImageView *distanceImage = [[UIImageView alloc] initWithFrame:CGRectMake(hei, hei, speed, speed)];
+        distanceImage.image = [UIImage imageNamed:@"addDistance.jpg"];
+        [_weaponBtn3 addSubview:distanceImage];
+        
+        
+        _weaponBtn1.userInteractionEnabled = NO;
+        _weaponBtn2.userInteractionEnabled = NO;
+        _weaponBtn3.userInteractionEnabled = NO;
+        
+        _weaponBtn1.alpha = 0.1;
+        _weaponBtn2.alpha = 0.1;
+        _weaponBtn3.alpha = 0.1;
+        
+        _weaponBtn1.index = 0;
+        _weaponBtn2.index = 1;
+        _weaponBtn3.index = 2;
+        
+        
+        Weapon *weapon1 = [[Weapon alloc] initWithSender:_weaponBtn1];
+        [weapon1 setSkillType:Speed];
+        
+        Weapon *weapon2 = [[Weapon alloc] initWithSender:_weaponBtn2];
+        [weapon2 setSkillType:Attack];
+        
+        Weapon *weapon3 = [[Weapon alloc] initWithSender:_weaponBtn3];
+        [weapon3 setSkillType:Attack_distance];
+        
+        //添加到遥控器
+        [_invker.commandList addObject:weapon1];
+        [_invker.commandList addObject:weapon2];
+        [_invker.commandList addObject:weapon3];
+        
     }
     
     return self;
@@ -123,27 +172,38 @@
     
 }
 
+//设置需要积累多少僵尸可以触发技能
+- (void)setWeapon1ZomNumber:(int)number
+{
+    [_weaponBtn1 setZomsNumber:number];
+}
+//设置技能CD
+- (void)setWeapon1CDTimes:(int)times
+{
+    [_weaponBtn1 setTimes:10];
+}
+
+
 - (void)weapon1AnimationEnd
 {
     _fireBtn.userInteractionEnabled = YES;
 }
 
 
-- (void)weapon1{
-
-    _fireBtn.userInteractionEnabled = NO;
+//僵尸死亡个数
+- (void)diedZomNumber:(int)number
+{
+    [_weaponBtn1 diedZomNumber:number];
     
-    [self setFireType:1];
-    
-    SkillAnimationTime *skill = [SkillAnimationTime share];
-    [skill weaponAction:_weaponBtn1];
-    
-
-    if (_weapon1Block) {
-        _weapon1Block();
-    }
 }
 
+
+- (void)weaponWithIndex:(int)index
+{
+    if (_weaponBlockWithIndex) {
+        _weaponBlockWithIndex(index);
+    }
+}
 
 - (void)fire:(NSTimer *)timer
 {

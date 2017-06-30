@@ -23,8 +23,9 @@
 @property (nonatomic ,assign)CGFloat rocketAnimationTime;
 @property (nonatomic ,assign)CGFloat rocketWaitTime;
 
-
 @property (nonatomic ,strong)UIButton *weaponBtn;
+
+
 
 #pragma mark 释放技能
 - (void)weaponAction:(FireBtn *)fireBtn;

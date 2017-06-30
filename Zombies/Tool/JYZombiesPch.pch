@@ -45,11 +45,25 @@ typedef enum : NSUInteger {
    level3 = 3,
 } zomLevel;
 
+typedef NS_ENUM(NSInteger,PersonSkillType){
+    
+    Speed           =  1,
+    Attack          =  2,
+    Attack_distance =  3,
+    
+};
+
 #import "BaseZombiesNode.h"
 #import "NormalZombies.h"
+#import "JYInvker.h" //按键管理
+#import "JYSkillList.h" //技能管理
 
 #define x_Scale  kScreenWidth / 667.0
 #define y_Scale  kScreenHeight / 375.0
+
+
+#define kSkillCD @"kSkillCD"
+#define kKillZomNumber @"kKillZomNumber"
 
 #define kBlood @"kBlood"   //血量
 #define kAttack @"kAttack" //攻击力

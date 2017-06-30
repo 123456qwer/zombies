@@ -7,7 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+@protocol InvkerProtocol <NSObject>
+
+//执行任务相关
+- (void)execute;
+- (void)rollBackExecute;
+
+//初始化玩家选择的技能
+- (void)setSkillTimes:(int)times;
+- (void)setKillZomNumber:(int)count;
+- (void)setSkillType:(PersonSkillType)type;
+
+
+@end
 
 @interface JYInvker : NSObject
++ (JYInvker *)shareInvker;
+
+- (void)executeWithIndex:(int)index; //执行
+- (void)rollBackExecute:(int)index;  //撤销
+
+@property (nonatomic ,strong)NSMutableArray *commandList;
 
 @end

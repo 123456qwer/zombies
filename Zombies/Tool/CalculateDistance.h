@@ -32,10 +32,7 @@
                      direction:(NSString *)direction
                          point:(PersonNode *)personNode;
 
-//地图移动
-+ (CGPoint )movePointForLandWithSpeed:(CGFloat)speed
-                            direction:(NSString *)direction
-                                point:(PersonNode *)personNode;
+
 
 //人物与僵尸之间距离
 + (CGFloat)zomAndPersonDistance:(CGPoint )zomPoint

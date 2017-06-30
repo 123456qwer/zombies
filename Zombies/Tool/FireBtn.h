@@ -14,14 +14,22 @@ typedef NS_ENUM(NSInteger, SkillType) {
 
 @interface FireBtn : UIButton
 
+@property (nonatomic ,assign)int index;
+
 @property (nonatomic ,copy)void (^selectBlock)(UIButton *);
 @property (nonatomic ,copy)void (^endBlock)(UIButton *);
 
 @property (nonatomic ,copy)void (^endSkillBlock)();
 @property (nonatomic ,assign)SkillType skillType;
 
-- (void)canUse:(BOOL)canUse;
+
+- (void)gameOver;
+
 - (void)addTimeLabel;
 - (void)setTimes:(int)time;
+- (void)setZomsNumber:(int)number;
+
+
+- (void)diedZomNumber:(int)diedZomNumber;
 
 @end

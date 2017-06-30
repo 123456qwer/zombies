@@ -28,11 +28,17 @@
     
     //击飞
     node.direction = [CalculateDistance oppositeDirection:direction];
-    node.position = [CalculateDistance movePointWithSpeed:-30.f direction:node.direction point:node];
-
+    
+    CGPoint point = [CalculateDistance movePointWithSpeed:-30.f direction:node.direction point:node];
+    SKAction *moveAction = [SKAction moveTo:point duration:0.2];
     
     node.texture = [_moveDic objectForKey:node.direction][0];
-    node.zPosition = 3 * kScreenHeight - node.position.y;
+    node.zPosition = 3 * kScreenHeight - point.y * y_Scale;
+
+    [node runAction:moveAction];
+    
+
+    
     
     
     int index = fabs(node.blood - 10);
@@ -54,6 +60,8 @@
    
     //人物移动
     node.position = [CalculateDistance movePointWithSpeed:node.speeds direction:key point:node];
+    NSLog(@"x:%lf  y:%lf",node.position.x,node.position.y);
+
     
     node.texture = [_moveDic objectForKey:key][0];
     node.zPosition = 3 * kScreenHeight - node.position.y * y_Scale;
@@ -105,5 +113,7 @@
     _bg_xArr = xArr;
     _bg_yArr = yArr;
 }
+
+
 
 @end

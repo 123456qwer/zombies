@@ -6,10 +6,10 @@
 //  Copyright © 2017年 北京金源互动科技有限公司. All rights reserved.
 //
 
-#import "Weapon1.h"
+#import "Weapon.h"
 #import "FireBtn.h"
 
-@implementation Weapon1
+@implementation Weapon
 {
     FireBtn *_sender;
     PersonSkillType _skillType;
@@ -42,9 +42,7 @@
     JYSkillList *skill = [JYSkillList shareList];
     [skill rollBackSkill:_skillType];
     
-    
-    _sender.userInteractionEnabled = NO;
-    _sender.alpha = 0.1;
+    [_sender gameOver];
 }
 
 - (void)setSkillType:(PersonSkillType)type
@@ -52,9 +50,13 @@
     _skillType = type;
     NSDictionary *dic = [[JYSkillList shareList] skillTimesAndKillZomNumber:type];
     
-    
     [self setSkillTimes:[dic[kSkillCD]intValue]];
     [self setKillZomNumber:[dic[kKillZomNumber]intValue]];
+}
+
+- (void)diedZomNumber:(int)count
+{
+    [_sender diedZomNumber:count];
 }
 
 - (void)setSkillTimes:(int)times

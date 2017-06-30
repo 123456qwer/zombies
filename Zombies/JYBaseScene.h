@@ -13,14 +13,16 @@
 @property (nonatomic ,assign)BOOL isAlreadyCreate;
 @property (nonatomic ,copy)NSString *personName;
 
-@property (nonatomic ,copy)void (^weapon1Finish)(int count);
 @property (nonatomic ,copy)void (^gameOver)();
 @property (nonatomic ,copy)void (^startGame)();
+
+
+@property (nonatomic ,copy)void (^diedZomNumber)(int count);
 
 //行走、停止
 - (void)moveAction:(NSString *)key speed:(CGFloat )speed;
 - (void)stopAction;
 - (void)fire;
 
-- (void)weapon1;
+- (void)weaponWithIndex:(int)index;
 @end

@@ -14,7 +14,6 @@
 - (void)moveAction:(NSString *)key speed:(CGFloat )speed{}
 - (void)stopAction{}
 - (void)fire{}
-- (void)weapon1{};
-
+- (void)weaponWithIndex:(int)index{}
 
 @end

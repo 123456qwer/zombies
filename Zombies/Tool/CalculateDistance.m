@@ -244,78 +244,11 @@
         x += speed1 ;
     }
  
-//    x  < 30 + 25 ? (x = 30 + 25) : x;
-//    x  > 3 * kScreenWidth - 30 - 25 ? x = 3 * kScreenWidth - 30 - 25 : x;
-//   
-//    y  <= 30 + 25 ? (y = 30 + 25) : y;
-//    y  >= 3 * kScreenHeight - 30 - 25 ? y = 3 * kScreenHeight - 30 - 25 : y;
-   
-    NSLog(@"宽度:%lf",kScreenWidth / x_Scale * 3);
-    NSLog(@"x:%lf",x);
     
     return  CGPointMake(x, y);
 }
 
 
-+ (CGPoint )movePointForLandWithSpeed:(CGFloat)speed
-                            direction:(NSString *)direction
-                                point:(PersonNode *)personNode
-{
-    
-    
-    
-    CGPoint g_point = personNode.mapNode.position;
-    
-    CGFloat x = g_point.x;
-    CGFloat y = g_point.y;
-    
-    
-    CGFloat speed1 = sqrt((speed * speed) / 2.0);
-    //相反方向
-    if (speed < 0) {
-        speed1 = -1 * speed1;
-    }
- 
-    if ([direction isEqualToString:kUp]) {
-        y -= speed * y_Scale;
-    }else if([direction isEqualToString:kDown]){
-        y += speed * y_Scale;
-    }else if([direction isEqualToString:kLeft]){
-        x += speed * x_Scale;
-    }else if([direction isEqualToString:kRight]){
-        x -= speed * x_Scale;
-    }else if([direction isEqualToString:kLU]){
-        y -= speed1 * y_Scale;
-        x += speed1 * x_Scale;
-    }else if([direction isEqualToString:kRU]){
-        y -= speed1 * y_Scale;
-        x -= speed1 * x_Scale;
-    }else if([direction isEqualToString:kLD]){
-        y += speed1 * y_Scale;
-        x += speed1 * x_Scale;
-    }else if([direction isEqualToString:kRD]){
-        y += speed1 * y_Scale;
-        x -= speed1 * x_Scale;
-    }
-    
-    //背景移动
-    if (y < - 2 * kScreenHeight || personNode.position.y * y_Scale + speed > 2 * kScreenHeight + kScreenHeight / 2.0) {
-        y = -2 * kScreenHeight;
-    }else if(y > 0 || personNode.position.y * y_Scale < kScreenHeight / 2.0){
-        y = 0;
-    }
-
-      
-    
-    if (x > 0 || personNode.position.x * x_Scale + speed < kScreenWidth / 2.0 ) {
-        x = 0;
-    }else if(x < - 2 * kScreenWidth || personNode.position.x * x_Scale + speed > 2 * kScreenWidth + kScreenWidth / 2.0){
-        x = - 2 * kScreenWidth;
-    }
-    
-    
-    return CGPointMake(x, y);
-}
 
 + (CGFloat)zomAndPersonDistance:(CGPoint )zomPoint
                     personPoint:(CGPoint)personPoint

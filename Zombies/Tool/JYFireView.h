@@ -12,8 +12,15 @@
 
 @property (nonatomic ,copy)void (^fireBlock)();
 
-@property (nonatomic ,copy)void (^weapon1Block)();
+@property (nonatomic ,copy)void (^weaponBlockWithIndex)(int index);
 
+
+
+- (void)setWeapon1ZomNumber:(int)number;
+- (void)setWeapon1CDTimes:(int)times;
+
+
+- (void)diedZomNumber:(int)number;
 
 
 - (void)weapon1AnimationEnd;

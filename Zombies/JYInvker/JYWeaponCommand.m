@@ -7,7 +7,17 @@
 //
 
 #import "JYWeaponCommand.h"
-
 @implementation JYWeaponCommand
+
+- (instancetype)initWithSender:(FireBtn *)sender
+{   
+    return self;
+}
+
+- (void)execute{}
+- (void)rollBackExecute{}
+- (void)setSkillTimes:(int)times{}
+- (void)setKillZomNumber:(int)count{}
+- (void)setSkillType:(PersonSkillType)type{}
 
 @end

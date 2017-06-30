@@ -12,7 +12,7 @@
 
 @property (nonatomic ,copy)void (^moveBlock)(NSString *direction , CGFloat speed);
 @property (nonatomic ,copy)void (^stopBlock)();
-
 @property (nonatomic ,assign)BOOL canUse;
+
 
 @end

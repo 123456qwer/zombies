@@ -11,6 +11,7 @@
 @interface NodeBehavior : NSObject
 
 @property (nonatomic ,copy)void (^finishConnonFire)();
+@property (nonatomic ,copy)void (^skillTimes)(int );
 
 
 - (void)died:(NSDictionary *)dic;
@@ -24,5 +25,7 @@
 
 - (CGPoint )setBGPositionWithPersonNode:(CGPoint)point;
 - (void)setBGarrWithX:(NSMutableArray *)xArr y:(NSMutableArray *)yArr;
+
+- (void)setSkillTimer:(int)times;
 
 @end

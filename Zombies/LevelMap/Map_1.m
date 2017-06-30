@@ -32,28 +32,59 @@ static void *zomLink = @"zomLink";
     CGPoint _lastPostion;
     
     CADisplayLink *_mapLink;
-    NSTimer *_mapTimer;
     BOOL  _destoryConnon;
+    
+    int   _killZomNumber;
     
 }
 
 - (void)mapMove{
+    
+    CGFloat x = _personNode.position.x;
+    CGFloat y = _personNode.position.y;
+    if (x > 1960) {
+        x = 1960;
+    }
+    
+    if (y > 1072) {
+        y = 1072;
+    }
+    
+    if (x < 38) {
+        x = 38;
+    }
+    
+    if (y < 38) {
+        y = 38;
+    }
+    
+    _personNode.position = CGPointMake(x, y);
+    _personNode.zPosition = 3 * kScreenHeight - _personNode.position.y * y_Scale;
+
     _personNode.mapNode.position = [_personNode.nodeBehavior setBGPositionWithPersonNode:_personNode.position];
+    
+ 
+    
 }
 
-/*
-- (void)mapMove:(NSTimer *)timer
-{
-    _personNode.mapNode.position = [_personNode.nodeBehavior setBGPositionWithPersonNode:_personNode.position];
-}
- */
+
 
 - (void)didMoveToView:(SKView *)view
 {
     
     if (!self.isAlreadyCreate) {
+        
+        //创建Node
         [self _createNodes];
+        
+        //技能管理,设置主角
+        JYSkillList *skillList = [JYSkillList shareList];
+        skillList.personNode = _personNode;
+        
+    
         self.isAlreadyCreate = YES;
+
+        _killZomNumber = 0;
         
         _mapLink.paused = YES;
         [_mapLink invalidate];
@@ -63,13 +94,11 @@ static void *zomLink = @"zomLink";
         [_normalTimer invalidate];
         _normalTimer = nil;
         
-       //[_mapTimer invalidate];
-       // _mapTimer = nil;
+   
         
-        //_normalTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(apearZombiesNodes:) userInfo:nil repeats:YES];
+        _normalTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(apearZombiesNodes:) userInfo:nil repeats:YES];
         
-        //_mapTimer = [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(mapMove:) userInfo:nil repeats:YES];
-       
+    
         _mapLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(mapMove)];
         [_mapLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     }
@@ -117,8 +146,6 @@ static void *zomLink = @"zomLink";
     //观察血量变化
     [zom addObserver:self forKeyPath:@"blood" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:NULL];
     
-    //设置物理，初始化坐标
-    //NSTimer *timer1 = [NSTimer scheduledTimerWithTimeInterval:0.016 target:self selector:@selector(zomMove:) userInfo:zom repeats:YES];
     
     CADisplayLink *_link = [CADisplayLink displayLinkWithTarget:self selector:@selector(zomMove:)];
     [_link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
@@ -158,38 +185,23 @@ static void *zomLink = @"zomLink";
             [zom removeObserver:self forKeyPath:@"blood"];
             NSMutableArray *diedArr;
             [zom died:diedArr];
+            
+            _killZomNumber++;
+            
+            //僵尸死亡次数
+            if (self.diedZomNumber) {
+                self.diedZomNumber(_killZomNumber);
+            }
+            
+            
         }
     }else if([keyPath isEqualToString:@"position"]){
        
 
-//        PersonNode *personNode = (PersonNode *)object;
-//        
-//        //[personNode.nodeBehavior setPersonLocation:personNode.position];
-//        NSLog(@"最终人物的距离：%lf",personNode.position.x);
    
     }
 }
 
-
-//僵尸移动
-/*
-- (void)zomMove:(NSTimer *)timer
-{
-   
-    NormalZombies *zom = timer.userInfo;
-    if (zom.blood == 0) {
-        [timer invalidate];
-        timer = nil;
-        return;
-    }
-    
-    if (zom.isRedZom) {
-        [zom zomMoveWithPerson:_personNode];
-    }else{
-        [zom zomMoveWithPerson:_personNode];
-    }
-}
- */
 
 
 
@@ -204,8 +216,6 @@ static void *zomLink = @"zomLink";
    
     _backGroundNode.xScale = kScreenWidth / 667.0;
     _backGroundNode.yScale = kScreenHeight / 375.0;
-    
-    
     
     
     _personNode = [[PersonNode alloc] initPersonNodeWithBgNode:_backGroundNode];
@@ -240,7 +250,6 @@ static void *zomLink = @"zomLink";
     
     [_personNode.nodeBehavior setBGarrWithX:x_arr y:y_arr];
    
-    //_backGroundNode.zPosition = -100;
     
     for (int i = 0; i < 4 ; i++) {
         NSString *name = [NSString stringWithFormat:@"wall%d",i+1];
@@ -260,7 +269,7 @@ static void *zomLink = @"zomLink";
     }
     
     if (!_destoryConnon) {
-        //[self performSelector:@selector(createConnon) withObject:nil afterDelay:3];
+       // [self performSelector:@selector(createConnon) withObject:nil afterDelay:3];
     }
 }
 
@@ -273,13 +282,13 @@ static void *zomLink = @"zomLink";
     [_cannon.nodeBehavior connonFire:@{@"connon":_cannon,@"person":_personNode}];
 }
 
+
 #pragma mark physicsBody
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
     id A = contact.bodyA.node;
     id B = contact.bodyB.node;
    
-   // NSLog(@"%@ %@",A,B);
     
     NormalZombies *zomNode = nil;
     PersonNode    *personNode = nil;
@@ -348,23 +357,16 @@ static void *zomLink = @"zomLink";
     }
     
     if (fireNode && zomNode && !zomNode.isAttack) {
-        zomNode.blood --;
+        zomNode.blood -= _personNode.attack;
         [fireNode removeFromParent];
     }
     
     
-    
-    //__weak typeof(self)weekSelf = self;
+    //僵尸攻击
     if (zomNode && personNode && !zomNode.isAttack) {
        
-        if (personNode.isBlink) {
-            zomNode.blood = 0;
-            return;
-        }
-        
         __weak typeof(self)weekSelf = self;
         [zomNode attackActionWithPerson:_personNode Completion:^(BOOL isGameOver){
-           
             
             if (isGameOver) {
                 
@@ -381,26 +383,13 @@ static void *zomLink = @"zomLink";
 
 }
 
-- (void)hidden{
-    _personNode.fireNode.hidden = YES;
-}
 
-- (void)weapon1{
-   
-    
-    [_personNode removeAllActions];
-    
-    SkillAnimationTime *time = [SkillAnimationTime share];
-    
-    /*
-    __weak typeof(self)weekSelf = self;
-    [time rocketAction:_personNode dic:nil finishBlock:^(int skillCount) {
-        if (weekSelf.weapon1Finish) {
-            weekSelf.weapon1Finish(skillCount);
-        }
-    }];
-    */
-    
+#pragma mark 按钮方法
+//技能按键
+- (void)weaponWithIndex:(int)index
+{
+    JYInvker *invker = [JYInvker shareInvker];
+    [invker executeWithIndex:index];
 }
 
 
@@ -418,6 +407,11 @@ static void *zomLink = @"zomLink";
     
 }
 
+- (void)hidden{
+    _personNode.fireNode.hidden = YES;
+}
+
+
 - (void)gameIsOver
 {
     [_normalTimer invalidate];
@@ -428,6 +422,8 @@ static void *zomLink = @"zomLink";
     _bgNode.xScale = kScreenWidth / 667.0;
     _bgNode.yScale = kScreenHeight / 375.0;
     
+    
+    
     if (self.gameOver) {
         self.gameOver();
     }
@@ -436,17 +432,11 @@ static void *zomLink = @"zomLink";
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    for (UITouch *touch in touches) {
-        
-        //CGPoint point = [touch locationInNode:self];
-        
         if (!self.isAlreadyCreate) {
             if (self.startGame) {
                 self.startGame();
             }
         }
-        
-    }
 }
 
 @end

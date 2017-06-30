@@ -23,4 +23,29 @@
 }
 - (void)setBGarrWithX:(NSMutableArray *)xArr y:(NSMutableArray *)yArr{}
 
+
+
+#pragma mark 公用
+- (void)setSkillTimer:(int)times
+{
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(skillTimes:) userInfo:@(times) repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)skillTimes:(NSTimer *)timer
+{
+    int times = [timer.userInfo intValue];
+    times --;
+    if (times < 0) {
+        return;
+    }
+    if (_skillTimes) {
+        _skillTimes(times);
+    }
+}
+
+
+
+
+
 @end

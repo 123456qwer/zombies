@@ -10,6 +10,7 @@
 #import "JYLoginScene.h"
 #import "JYOperationView.h"
 #import "JYFireView.h"
+#import "Weapon.h"
 
 @interface JYLoginVC ()
 {
@@ -50,18 +51,22 @@
     
     
     
+    
     //fire按钮
     _fireView = [[JYFireView alloc] initWithFrame:CGRectMake(kScreenWidth / 2.0, 0, kScreenWidth / 2.0, kScreenHeight)];
     _fireView.hidden = YES;
     [self.view addSubview:_fireView];
     
+    //攻击按键
     [_fireView setFireBlock:^{
         [weekSelf fireAction];
     }];
     
-    [_fireView setWeapon1Block:^{
-        [weekSelf weapon1Action];
+    //技能按键
+    [_fireView setWeaponBlockWithIndex:^(int index){
+        [weekSelf weaponWithIndex:index];
     }];
+
     
     
     //操作视图
@@ -81,45 +86,42 @@
 
 }
 
-- (void)weapon1Action{
 
-    _operationV.canUse = NO;
-    _operationV.hidden = YES;
-    [_appearScene weapon1];
-    
+//将释放的技能操作传递到当前sence
+- (void)weaponWithIndex:(int)index
+{
+    [_appearScene weaponWithIndex:index];
 }
+
+
 
 - (void)fireAction{
     [_appearScene fire];
 }
 
+
 - (void)stop{
     [_appearScene stopAction];
 }
 
-- (void)canUseOperation:(int)fireType{
-    
-    [_fireView setFireType:fireType];
-    _operationV.canUse = YES;
-    _operationV.hidden = NO;
 
-}
 
 - (void)moveAction:(NSString *)direction speed:(CGFloat)speed
 {
     [_appearScene moveAction:direction speed:speed];
 }
 
+
 - (void)startWithMapName:(NSString *)mapName
               personName:(NSString *)personName
 {
     [self hiddenOperation:NO];
     Class mapClass = NSClassFromString(mapName);
+    
     JYBaseScene *sence = [mapClass nodeWithFileNamed:mapName];
     SKView *skView = (SKView *)self.view;
     sence.personName = personName;
     _appearScene = sence;
-    [skView presentScene:sence];
     
    
     __weak typeof(self)weekSelf = self;
@@ -131,14 +133,37 @@
         [weekSelf startWithMapName:mapName personName:personName];
     }];
     
-    [sence setWeapon1Finish:^(int count){
-        
-        [weekSelf canUseOperation:count];
+    //设置僵尸死亡个数
+    [sence setDiedZomNumber:^(int count){
+        [weekSelf setDidZomNumber:count];
     }];
+    
+    //block添加在显示sence之前,否则不会走
+    [skView presentScene:sence];
+
 }
+
+
+//僵尸死亡个数(同步)
+- (void)setDidZomNumber:(int )count
+{
+    JYInvker *invker = [JYInvker shareInvker];
+    for (Weapon *weapon in invker.commandList) {
+        [weapon diedZomNumber:count];
+    }
+    
+}
+
+
 
 - (void)hiddenOperation:(BOOL)isHidden
 {
+    
+    JYInvker *invker = [JYInvker shareInvker];
+    for (Weapon *weapon in invker.commandList) {
+        [weapon rollBackExecute];
+    }
+    
     _operationV.hidden = isHidden;
     _fireView.hidden = isHidden;
 }

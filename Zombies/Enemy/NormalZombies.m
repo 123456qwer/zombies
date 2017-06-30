@@ -24,7 +24,7 @@
             case level1:
             {
                 self.isRedZom = NO;
-                self.blood = 3;
+                self.blood = 4;
                 self.speeds = 1;
                 
                 moveDic = [CutPictureTool cutPic:[UIImage imageNamed:@"NormalZom"] size:CGSizeMake(50, 50) line:8 arrange:3];
@@ -37,8 +37,8 @@
             case level2:
             {
                 self.isRedZom = YES;
+                self.blood = 8;
                 self.speeds = 2;
-                self.blood = 10.0;
                 
                 moveDic = [CutPictureTool cutPic:[UIImage imageNamed:@"RedNarmalZom"] size:CGSizeMake(50,50) line:8 arrange:3];
                 attackDic = [CutPictureTool cutPic:[UIImage imageNamed:@"Red_NZ_Attack"] size:CGSizeMake(50, 50) line:8 arrange:4];

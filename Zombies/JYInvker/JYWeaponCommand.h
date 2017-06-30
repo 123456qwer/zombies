@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JYInvker.h"
+@interface JYWeaponCommand : NSObject<InvkerProtocol>
 
-@interface JYWeaponCommand : NSObject
+- (instancetype)initWithSender:(FireBtn *)sender;
 
 @end

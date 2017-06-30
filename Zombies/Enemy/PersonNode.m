@@ -29,8 +29,11 @@
         self.mapNode = mapNode;
         
         self.position = CGPointMake(kScreenWidth / 2.0 , kScreenHeight / 2.0);
+        
         self.speeds = 3;
         self.attack_distance = 170;
+        self.attack = 1;
+        
         
         self.nodeBehavior = [PersonBehavior new];
         [self.nodeBehavior setValue:moveDic forKey:@"moveDic"];
@@ -75,11 +78,10 @@
         _bloodNode.position = CGPointMake(0, 30);
         _bloodNode.alpha = 0.5;
         [self addChild:_bloodNode];
-  
+        
     }
     
     return self;
-    
 }
 
 
