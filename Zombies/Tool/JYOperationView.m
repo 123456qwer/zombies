@@ -133,17 +133,6 @@
                 [_link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
             }
         }
-             /*
-        if (![_keyStr isEqualToString:keyStr] || !_moveTimer) {
-            
-            _keyStr = keyStr;
-            if (!_moveTimer) {
-                _moveTimer = [NSTimer scheduledTimerWithTimeInterval:0.016 target:self selector:@selector(move:) userInfo:nil repeats:YES];
-            }
-        }
-         */
-         
-         
     }
 }
 

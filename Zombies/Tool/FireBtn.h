@@ -23,6 +23,11 @@ typedef NS_ENUM(NSInteger, SkillType) {
 @property (nonatomic ,assign)SkillType skillType;
 @property (nonatomic ,strong)UIImageView *skillImage;
 
+
+- (void)canUse;
+- (void)canNotUse;
+
+
 - (void)gameOver;
 
 - (void)addTimeLabel;
@@ -31,5 +36,6 @@ typedef NS_ENUM(NSInteger, SkillType) {
 - (void)setImage:(UIImage *)image;
 
 - (void)diedZomNumber:(int)diedZomNumber;
+
 
 @end

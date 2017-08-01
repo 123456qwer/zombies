@@ -50,6 +50,7 @@ typedef NS_ENUM(NSInteger,PersonSkillType){
     Speed           =  1,
     Attack          =  2,
     Attack_distance =  3,
+    blink           =  4,
     
 };
 

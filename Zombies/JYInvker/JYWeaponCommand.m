@@ -19,4 +19,6 @@
 - (void)setSkillTimes:(int)times{}
 - (void)setKillZomNumber:(int)count{}
 - (void)setSkillType:(PersonSkillType)type{}
+
+
 @end

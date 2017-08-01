@@ -85,10 +85,33 @@
         _bloodNode.alpha = 0.5;
         [self addChild:_bloodNode];
         
+        _isContact = YES;
+        
     }
     
     return self;
 }
+
+
+- (void)setIsContact:(BOOL)isContact
+{
+    _isContact = isContact;
+    if (isContact) {
+        
+        self.physicsBody.categoryBitMask = player_type;
+        self.physicsBody.contactTestBitMask = normal_zom;
+        self.physicsBody.collisionBitMask = player_type;
+        
+    }else{
+      
+        self.physicsBody.categoryBitMask = 0;
+        self.physicsBody.contactTestBitMask = 0;
+        self.physicsBody.collisionBitMask = 0;
+    }
+}
+
+
+
 
 
 - (void)setBodyAndPosition:(SKSpriteNode *)mapNode

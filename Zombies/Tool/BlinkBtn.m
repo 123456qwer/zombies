@@ -9,13 +9,61 @@
 #import "BlinkBtn.h"
 
 @implementation BlinkBtn
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+{
+    int _changeTime;
+    int _cdTime;
+    NSTimer *_timer;
+    UILabel *_timeLabel;
 }
-*/
+
+
+- (void)gameOver
+{
+    [_timer invalidate];
+    _timer = nil;
+    
+    [_timeLabel removeFromSuperview];
+    _changeTime = _cdTime;
+    
+    [self canUse];
+};
+
+- (void)setTimes:(int)time
+{
+    _changeTime = time;
+    _cdTime     = time;
+}
+
+- (void)addTimeLabel
+{
+    [self canNotUse];
+    
+    UIColor *textColor = [UIColor yellowColor];
+
+    _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+    _timeLabel.textColor = textColor;
+    _timeLabel.font = [UIFont boldSystemFontOfSize:25];
+    _timeLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_timeLabel];
+    _timeLabel.text = [NSString stringWithFormat:@"%d",_changeTime];
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(weaponTimes:) userInfo:_timeLabel repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+
+}
+
+- (void)weaponTimes:(NSTimer *)timer
+{
+    _changeTime --;
+    if (_changeTime < 0) {
+        
+        [self gameOver];
+        
+        return;
+    }
+    
+    _timeLabel.text = [NSString stringWithFormat:@"%d",_changeTime];
+    
+}
 
 @end

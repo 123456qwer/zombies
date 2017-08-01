@@ -18,9 +18,15 @@
 @property (nonatomic ,strong)SKSpriteNode *mapNode;
 
 
+//设置是否响应碰撞<闪现状态>
+@property (nonatomic ,assign)BOOL isContact;
+
 @property (nonatomic ,assign)BOOL isBlink;
 
 - (PersonNode *)initPersonNodeWithBgNode:(SKSpriteNode *)mapNode;
+
+
+
 
 //初始化人物属性
 - (void)setBodyAndPosition:(SKSpriteNode *)mapNode;

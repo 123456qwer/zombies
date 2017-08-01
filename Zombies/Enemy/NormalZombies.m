@@ -9,6 +9,10 @@
 #import "NormalZombies.h"
 @implementation NormalZombies
 
+{
+    SKLabelNode *_lableNode;
+}
+
 - (NormalZombies *)initZombiesNodeWithPerson:(PersonNode *)personNode
                                        level:(zomLevel)level
 {
@@ -92,17 +96,33 @@
         [self.nodeBehavior setValue:diedArr forKey:@"diedArr"];
         [self.nodeBehavior setValue:bornArr forKey:@"bornArr"];
         
+        
+        _lableNode = [SKLabelNode labelNodeWithFontNamed:@"Georgia-Bold"];
+        _lableNode.hidden = YES;
+        _lableNode.fontSize = 18.f;
+        _lableNode.position = CGPointMake(0, 15);
+        [self addChild:_lableNode];
+        
     }
     
     return self;
-    
-    
+}
 
+- (void)setLabelText:(NSString *)text
+{
+    _lableNode.hidden = NO;
+    _lableNode.text = text;
+    
+    [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:0.5];
+}
+
+- (void)hiddenLabel
+{
+    _lableNode.hidden = YES;
 }
 
 - (void)setBodyAndPosition:(NSMutableArray *)bornArr
 {
-    
     
 }
 

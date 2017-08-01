@@ -52,20 +52,31 @@
     if (zom.isRedZom) {
         attackTime = 0.1;
     }
+    
     if (!zom.direction) {
         zom.direction =[CalculateDistance directionWithPointForZom:zom.position point2:perNode.position];
     }
     
     SKAction *action = [SKAction animateWithTextures:[_attackDic objectForKey:zom.direction] timePerFrame:attackTime];
     zom.isAttack = YES;
+
     [zom runAction:action completion:^{
         
         CGFloat attackDistance = [CalculateDistance zomAndPersonDistance:zom.position personPoint:perNode.position];
         zom.isAttack = NO;
         BOOL isGameOver = NO;
+        
         if (attackDistance < 30.f) {
-            isGameOver = [perNode beAttackWithZomDirection:zom.direction];
+            //闪现攻击miss
+            if (!perNode.isContact) {
+                [zom setLabelText:@"MISS"];
+            }else{
+                isGameOver = [perNode beAttackWithZomDirection:zom.direction];
+            }
+        }else{
+            [zom setLabelText:@"MISS"];
         }
+        
         
         if (block) {
             block(isGameOver);
@@ -78,7 +89,7 @@
     PersonNode *personNode = [dic objectForKey:kPerNode];
 
     JYSkillList *skill = [JYSkillList shareList];
-    arc4random() % 100 < personNode.passiveSpeeds ? [skill passiveChangeSpeed:1] : (0);
+    arc4random() % 100 < personNode.passiveSpeeds ? [skill passiveChangeSpeed:0.5] : (0);
     
     
     
@@ -100,8 +111,8 @@
 {
     BaseNode *node = [dic objectForKey:kNode];
     PersonNode *perNode = [dic objectForKey:kPerNode];
-
     
+
     if (node.isAttack) {
         return;
     }

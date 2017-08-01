@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		431450E91F07388000CFCF70 /* 技能边框.gif in Resources */ = {isa = PBXBuildFile; fileRef = 431450E81F07388000CFCF70 /* 技能边框.gif */; };
 		431A5EC41E9CC288009D4A5D /* CutPictureTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 431A5EC31E9CC288009D4A5D /* CutPictureTool.m */; };
 		431A5EC71E9CCB5C009D4A5D /* person4.png in Resources */ = {isa = PBXBuildFile; fileRef = 431A5EC61E9CCB5C009D4A5D /* person4.png */; };
 		431A5ECB1E9CD0AA009D4A5D /* 背景选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 431A5ECA1E9CD0AA009D4A5D /* 背景选中.png */; };
@@ -50,6 +51,9 @@
 		43DE99561EA854CA00DFA9ED /* NodeBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DE99551EA854CA00DFA9ED /* NodeBehavior.m */; };
 		43DE99591EA8550500DFA9ED /* ZombiesBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DE99581EA8550500DFA9ED /* ZombiesBehavior.m */; };
 		43DE995C1EA8591000DFA9ED /* PersonBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 43DE995B1EA8591000DFA9ED /* PersonBehavior.m */; };
+		43EBAD361F0CC5190071EA06 /* blink.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43EBAD351F0CC5190071EA06 /* blink.jpg */; };
+		43EBAD381F0CC51F0071EA06 /* addFast.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43EBAD371F0CC51F0071EA06 /* addFast.jpg */; };
+		43EBAD3B1F0CC8400071EA06 /* BlinkBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBAD3A1F0CC8400071EA06 /* BlinkBtn.m */; };
 		43EC4D051E9F682F00129D3E /* NormalZom.png in Resources */ = {isa = PBXBuildFile; fileRef = 43EC4D041E9F682F00129D3E /* NormalZom.png */; };
 		43F2AEE41E9B5F25007D9C01 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F2AEE31E9B5F25007D9C01 /* main.m */; };
 		43F2AEE71E9B5F25007D9C01 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F2AEE61E9B5F25007D9C01 /* AppDelegate.m */; };
@@ -76,6 +80,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		431450E81F07388000CFCF70 /* 技能边框.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "技能边框.gif"; sourceTree = "<group>"; };
 		431A5EC21E9CC288009D4A5D /* CutPictureTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CutPictureTool.h; sourceTree = "<group>"; };
 		431A5EC31E9CC288009D4A5D /* CutPictureTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CutPictureTool.m; sourceTree = "<group>"; };
 		431A5EC51E9CC29C009D4A5D /* JYZombiesPch.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYZombiesPch.pch; sourceTree = "<group>"; };
@@ -137,6 +142,10 @@
 		43DE99581EA8550500DFA9ED /* ZombiesBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZombiesBehavior.m; sourceTree = "<group>"; };
 		43DE995A1EA8591000DFA9ED /* PersonBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonBehavior.h; sourceTree = "<group>"; };
 		43DE995B1EA8591000DFA9ED /* PersonBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonBehavior.m; sourceTree = "<group>"; };
+		43EBAD351F0CC5190071EA06 /* blink.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blink.jpg; sourceTree = "<group>"; };
+		43EBAD371F0CC51F0071EA06 /* addFast.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addFast.jpg; sourceTree = "<group>"; };
+		43EBAD391F0CC8400071EA06 /* BlinkBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlinkBtn.h; sourceTree = "<group>"; };
+		43EBAD3A1F0CC8400071EA06 /* BlinkBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlinkBtn.m; sourceTree = "<group>"; };
 		43EC4D041E9F682F00129D3E /* NormalZom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NormalZom.png; sourceTree = "<group>"; };
 		43F2AEDF1E9B5F25007D9C01 /* Zombies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zombies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F2AEE31E9B5F25007D9C01 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -200,6 +209,8 @@
 				433E61EA1EA4A0D800FD3606 /* JYFireView.m */,
 				432DC8C11EA5D775001FBC71 /* FireBtn.h */,
 				432DC8C21EA5D775001FBC71 /* FireBtn.m */,
+				43EBAD391F0CC8400071EA06 /* BlinkBtn.h */,
+				43EBAD3A1F0CC8400071EA06 /* BlinkBtn.m */,
 				4347FDC91EC41A38009389FD /* SkillAnimationTime.h */,
 				4347FDCA1EC41A38009389FD /* SkillAnimationTime.m */,
 			);
@@ -308,6 +319,7 @@
 		43F2AF001E9B613A007D9C01 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				431450E81F07388000CFCF70 /* 技能边框.gif */,
 				43B214311EFB68AD009C92C4 /* connon_fire.png */,
 				43B2142D1EFB6103009C92C4 /* connon.png */,
 				43AD48AF1EF9253500FD9FB4 /* map1.png */,
@@ -327,6 +339,8 @@
 				433E61E71EA4A09700FD3606 /* fire.png */,
 				432DC8C61EA5F936001FBC71 /* gameOver.png */,
 				432DC8C41EA5ED8F001FBC71 /* weaponBtn.png */,
+				43EBAD351F0CC5190071EA06 /* blink.jpg */,
+				43EBAD371F0CC51F0071EA06 /* addFast.jpg */,
 				43F6CBD91F063266009188AF /* addSpeed.jpg */,
 				43F6CBDD1F0635CE009188AF /* addAttack.jpg */,
 				43F6CBDF1F064375009188AF /* addDistance.jpg */,
@@ -451,11 +465,14 @@
 				433E61E81EA4A09700FD3606 /* fire.png in Resources */,
 				43F2AF4D1E9B7EE0007D9C01 /* Map_1.sks in Resources */,
 				43F2AF2F1E9B65DC007D9C01 /* person_1.png in Resources */,
+				43EBAD381F0CC51F0071EA06 /* addFast.jpg in Resources */,
+				43EBAD361F0CC5190071EA06 /* blink.jpg in Resources */,
 				43F2AF3E1E9B786E007D9C01 /* person_4.png in Resources */,
 				43B2142E1EFB6103009C92C4 /* connon.png in Resources */,
 				433B7C341EA9E309003798FE /* blink_r.png in Resources */,
 				43F6CBDA1F063266009188AF /* addSpeed.jpg in Resources */,
 				432DC8C51EA5ED8F001FBC71 /* weaponBtn.png in Resources */,
+				431450E91F07388000CFCF70 /* 技能边框.gif in Resources */,
 				43F2AF301E9B65DC007D9C01 /* person_2.png in Resources */,
 				433E61E61EA49B3200FD3606 /* NormalBorn.png in Resources */,
 				43B673511EFA09270097D5A9 /* 长栏杆.png in Resources */,
@@ -506,6 +523,7 @@
 				43DE99591EA8550500DFA9ED /* ZombiesBehavior.m in Sources */,
 				43F2AEE41E9B5F25007D9C01 /* main.m in Sources */,
 				43B214351EFB9CF7009C92C4 /* ConnonZombies.m in Sources */,
+				43EBAD3B1F0CC8400071EA06 /* BlinkBtn.m in Sources */,
 				43F2AF1E1E9B6433007D9C01 /* JYLoginScene.m in Sources */,
 				43F6CBCF1F05F154009188AF /* JYInvker.m in Sources */,
 			);

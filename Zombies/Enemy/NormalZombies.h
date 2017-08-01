@@ -31,4 +31,6 @@
 
 
 
+- (void)setLabelText:(NSString *)text;
+
 @end

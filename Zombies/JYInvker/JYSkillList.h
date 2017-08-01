@@ -25,19 +25,27 @@
 - (NSDictionary *)skillTimesAndKillZomNumber:(PersonSkillType)type;
 
 //主动技能
+//闪现
+- (void)blink;
+
+
+
 //改变人物移动速度
-- (void)changeSpeed:(int)speed;
+- (void)changeSpeed:(CGFloat)speed;
 
 //改变攻击力
-- (void)changeFirePower:(int)power;
+- (void)changeFirePower:(CGFloat)power;
 
 //改变攻击距离
-- (void)changeFireDistance:(int)distance;
+- (void)changeFireDistance:(CGFloat)distance;
+
+
+
 
 
 //被动技能
 //10概率增加移速 1
-- (void)passiveChangeSpeed:(int)speed;
+- (void)passiveChangeSpeed:(CGFloat)speed;
 @property (nonatomic ,assign)BOOL passiveChangeSpeed;
 
 //10%概率击晕僵尸

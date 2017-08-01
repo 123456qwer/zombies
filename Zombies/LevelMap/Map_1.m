@@ -96,7 +96,7 @@ static void *zomLink = @"zomLink";
         
    
         
-        _normalTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(apearZombiesNodes:) userInfo:nil repeats:YES];
+        _normalTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(apearZombiesNodes:) userInfo:nil repeats:YES];
         
     
         _mapLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(mapMove)];
@@ -192,12 +192,11 @@ static void *zomLink = @"zomLink";
                 self.diedZomNumber(_killZomNumber);
             }
             
-            
         }
+        
+        
     }else if([keyPath isEqualToString:@"position"]){
        
-
-   
     }
 }
 
@@ -208,7 +207,7 @@ static void *zomLink = @"zomLink";
 {
     self.physicsWorld.contactDelegate = self;
     
-    _zombiesNumber = 50;
+    _zombiesNumber = 100;
     _bgNode = (SKSpriteNode *)[self childNodeWithName:@"bg"];
     _bgNode.hidden = YES;
     _backGroundNode = (SKSpriteNode *)[self childNodeWithName:@"landNode"];

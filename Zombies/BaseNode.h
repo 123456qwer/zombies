@@ -15,11 +15,11 @@
 @interface BaseNode : SKSpriteNode
 
 //人物属性
-@property (nonatomic ,assign)int blood;   //血量
-@property (nonatomic ,assign)int attack;  //攻击力
-@property (nonatomic ,assign)int speeds;  //移速
-@property (nonatomic ,assign)int attack_distance; //攻击距离
-@property (nonatomic ,assign)int fire_impact;  //子弹冲击力
+@property (nonatomic ,assign)CGFloat blood;   //血量
+@property (nonatomic ,assign)CGFloat attack;  //攻击力
+@property (nonatomic ,assign)CGFloat speeds;  //移速
+@property (nonatomic ,assign)CGFloat attack_distance; //攻击距离
+@property (nonatomic ,assign)CGFloat fire_impact;  //子弹冲击力
 @property (nonatomic ,assign)BOOL isFire;
 
 

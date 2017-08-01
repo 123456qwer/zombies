@@ -31,10 +31,7 @@
     
     JYSkillList *skill = [JYSkillList shareList];
     [skill skill:_skillType];
-    
-    
-    _sender.userInteractionEnabled = NO;
-    _sender.alpha = 0.5;
+  
 }
 
 - (void)rollBackExecute{
@@ -52,8 +49,7 @@
     
     [self setSkillTimes:[dic[kSkillCD]intValue]];
     [self setKillZomNumber:[dic[kKillZomNumber]intValue]];
-    [self setSkillImage:dic[kSkillImage]];
-    
+    [self setSkillImage:dic[kSkillImage]];    
 }
 
 
@@ -61,6 +57,7 @@
 {
     [_sender diedZomNumber:count];
 }
+
 
 
 

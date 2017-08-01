@@ -52,9 +52,17 @@
 
 - (void)move:(NSDictionary *)dic
 {
+    
+   
+    
     PersonNode *node = dic[kNode];
+    
+    if (!node.isContact) {
+        node.direction = nil;
+        return;
+    }
+    
     NSString *key = dic[@"key"];
- 
    
     //人物移动
     node.position = [CalculateDistance movePointWithSpeed:node.speeds direction:key point:node];
